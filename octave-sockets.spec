@@ -1,15 +1,15 @@
 %global octpkg sockets
 
 Summary:	Socket functions for networking from within Octave
-Name:		octave-%{octpkg}
+Name:		octave-sockets
 Version:	1.4.0
-Release:	1
-Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://packages.octave.org/%{octpkg}/
+Url:		https://packages.octave.org/sockets/
+Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 
-BuildRequires:	octave-devel >= 3.62.0
+BuildRequires:  octave-devel >= 3.6.0
 
 Requires:	octave(api) = %{octave_api}
 
@@ -22,10 +22,11 @@ Socket functions for networking from within Octave.
 %files
 %license COPYING
 %doc NEWS
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
 %dir %{octpkgdir}
 %{octpkgdir}/*
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
+#{_metainfodir}/*.metainfo.xml
 
 #---------------------------------------------------------------------------
 
@@ -33,10 +34,7 @@ Socket functions for networking from within Octave.
 %autosetup -p1 -n %{octpkg}-%{version}
 
 # fix octave path
-sed -i -e "s|/usr/local/bin/octave|/usr/local/bin/octave|" src/test_socket
-
-# remove backup files
-#find . -name \*~ -delete
+sed -i -e "s|/usr/local/bin/octave|%{_preifx}%{_bindir}/octave|" src/test_socket
 
 %build
 %set_build_flags
