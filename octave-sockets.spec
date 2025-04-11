@@ -3,7 +3,7 @@
 Summary:	Socket functions for networking from within Octave
 Name:		octave-sockets
 Version:	1.4.1
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/sockets/
